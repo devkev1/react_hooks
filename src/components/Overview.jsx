@@ -6,7 +6,7 @@ function Overview ({ tasks }) {
             <h3>Your Tasks:</h3>
             {tasks.map((input, index) => {
                 return (
-                 <div key={index}>
+                 <div key={`task-${index}`}>
                      <h6>{input.content}</h6>
                  </div>
                 );
