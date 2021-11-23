@@ -1,21 +1,42 @@
-import React, { Component } from "react";
+import { useState } from "react";
+import Overview from "./components/Overview";
 import "./App.css";
 
-class App extends Component {
-  render() {
-    return (
-      <main
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          textAlign: "center",
-        }}
-      >
-        <h1>React Hooks</h1>
-      </main>
-    );
-  }
+function App () {
+  const [tasks, setTasks] = useState([]);
+
+  const handleClick = () => {
+    const input = document.getElementById("task").value;
+
+    const updateTasks = tasks.concat({
+      content: input,
+      complete: false,
+    });
+    setTasks(updateTasks);
+  };
+
+  return (
+    <main
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      flexDirection: "column",
+      textAlign: "center",
+    }}
+  >
+    <section>
+      <h3>Tasks</h3>
+      <input 
+        type="text" 
+        id="task" 
+        placeholder="Task"
+      />
+      <button onClick={handleClick}>Submit</button>
+    </section>
+      <Overview tasks={tasks} />
+  </main>
+
+  )
 }
 
 export default App;
